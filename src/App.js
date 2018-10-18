@@ -1,5 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
+import axios from "axios";
 
 class FullName extends React.Component {
     render() {
@@ -11,8 +12,10 @@ class App extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            date: new Date()
+            date: new Date(),
+            showTime: true
         };
+        this.stopTimer = this.stopTimer.bind(this);
     }
 
     // will be called when component completely rendered to dom
@@ -38,12 +41,25 @@ class App extends React.Component {
         })
     }
 
+    stopTimer(e) {
+        e.preventDefault();
+        if (this.state.showTime == true) {
+            this.componentWillUnmount()
+            this.setState({showTime: false});
+        } else {
+            this.componentDidMount();
+            this.setState({showTime: true});
+        }
+
+    }
+
     render() {
         return (
             <div>
                 <FullName name="Tuhin Beppari"/>
                 <p>
                     <small>Its {this.state.date.toLocaleTimeString()}</small>
+                    <button onClick={this.stopTimer}>Stop Timer</button>
                 </p>
             </div>
         );
