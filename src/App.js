@@ -1,6 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import axios from "axios";
+import Login from './Login'
 
 class FullName extends React.Component {
     render() {
@@ -60,6 +61,8 @@ class App extends React.Component {
                 <p>
                     <small>Its {this.state.date.toLocaleTimeString()}</small>
                     <button onClick={this.stopTimer}>Stop Timer</button>
+
+                    <Login/>
                 </p>
             </div>
         );
