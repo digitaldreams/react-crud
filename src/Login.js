@@ -8,8 +8,8 @@ class Login extends React.Component {
             email: 'rosemichele12@gmail.com',
             password: '123456',
         }
-        this.setUser = props.setUser;
-        this.setToken = props.setToken;
+        this.setUser = props.user;
+        this.setToken = props.token;
     }
 
 

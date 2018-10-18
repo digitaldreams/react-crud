@@ -19,6 +19,17 @@ class App extends React.Component {
             user: null
         };
         this.stopTimer = this.stopTimer.bind(this);
+        this.setUser = (user) => {
+            this.setState({
+                user: user
+            })
+        }
+        this.setToken = (token) => {
+            this.setState({
+                token: token
+            })
+            axios.defaults.headers.common['Authorization'] = `Bearer ${token}`
+        }
     }
 
     // will be called when component completely rendered to dom
@@ -29,18 +40,6 @@ class App extends React.Component {
         );
     }
 
-    setToken(token) {
-        this.setState({
-            token: token
-        })
-        axios.defaults.headers.common['Authorization'] = `Bearer ${token}`
-    }
-
-    setUser(user) {
-        this.setState({
-            user: user
-        })
-    }
 
     // will be called before rendering component to dom
     componentWillMount() {
