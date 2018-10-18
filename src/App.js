@@ -14,7 +14,9 @@ class App extends React.Component {
         super(props);
         this.state = {
             date: new Date(),
-            showTime: true
+            showTime: true,
+            token: null,
+            user: null
         };
         this.stopTimer = this.stopTimer.bind(this);
     }
@@ -25,6 +27,19 @@ class App extends React.Component {
             () => this.tick(),
             1000
         );
+    }
+
+    setToken(token) {
+        this.setState({
+            token: token
+        })
+        axios.defaults.headers.common['Authorization'] = `Bearer ${token}`
+    }
+
+    setUser(user) {
+        this.setState({
+            user: user
+        })
     }
 
     // will be called before rendering component to dom
@@ -62,7 +77,7 @@ class App extends React.Component {
                     <small>Its {this.state.date.toLocaleTimeString()}</small>
                     <button onClick={this.stopTimer}>Stop Timer</button>
 
-                    <Login/>
+                    <Login token={this.setToken} user={this.setUser}/>
                 </p>
             </div>
         );

@@ -7,8 +7,9 @@ class Login extends React.Component {
         this.state = {
             email: 'rosemichele12@gmail.com',
             password: '123456',
-            token: null
         }
+        this.setUser = props.setUser;
+        this.setToken = props.setToken;
     }
 
 
@@ -27,9 +28,16 @@ class Login extends React.Component {
             email: this.state.email,
             password: this.state.password
         }).then((response) => {
-            console.log(response);
+            this.setToken(response.data.token);
+            this.fetchUser();
         }).catch((e) => {
             console.log(e);
+        })
+    }
+
+    fetchUser() {
+        axios.get('/api/profile').then((response) => {
+            console.log(response);
         })
     }
 
